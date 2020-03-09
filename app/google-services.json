@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1057727737788",
+    "firebase_url": "https://unalpool.firebaseio.com",
+    "project_id": "unalpool",
+    "storage_bucket": "unalpool.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057727737788:android:78b69bfcc1015d9036c5b9",
+        "android_client_info": {
+          "package_name": "com.example.unalpool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057727737788-d7j2dqqc3jmapekao5rdl8aruj2l32e4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnybjd46_ttq77r8ImcBugh4d5nCVRvx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057727737788-d7j2dqqc3jmapekao5rdl8aruj2l32e4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
