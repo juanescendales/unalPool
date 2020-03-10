@@ -1,4 +1,4 @@
-package com.example.unalpool.ui.dashboard
+package com.example.unalpool.ui.chat
 
 import android.os.Bundle
 import android.view.LayoutInflater

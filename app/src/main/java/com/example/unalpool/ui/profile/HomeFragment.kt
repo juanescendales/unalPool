@@ -1,4 +1,4 @@
-package com.example.unalpool.ui.home
+package com.example.unalpool.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
