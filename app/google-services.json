@@ -8,7 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1057727737788:android:78b69bfcc1015d9036c5b9",
+        "mobilesdk_app_id": "1:1057727737788:android:034077e562cfbdb736c5b9",
         "android_client_info": {
           "package_name": "com.example.unalpool"
         }
@@ -28,7 +28,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1057727737788-d7j2dqqc3jmapekao5rdl8aruj2l32e4.apps.googleusercontent.com",
+              "client_id": "1057727737788-9mj7gg9sfb69o05r7o1k2kk1qt23feb0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

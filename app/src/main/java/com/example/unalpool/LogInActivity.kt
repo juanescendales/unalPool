@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.IdpResponse
@@ -16,10 +17,45 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import kotlinx.android.synthetic.main.activity_sign_in.*
+import kotlinx.android.synthetic.main.activity_log_in.*
+import kotlinx.android.synthetic.main.activity_register.*
+
+class LogInActivity  : AppCompatActivity(){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_log_in)
+
+        login_button.setOnClickListener {
+            val email = email_editText_login.text.toString()
+            val password = password_editText_login.text.toString()
+
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+            if (task.isSuccessful) {
+                // Sign in success, update UI with the signed-in user's information
+                Log.d("Sing in", "signInWithEmail:success")
+                Toast.makeText(baseContext, "Ingreso satisfactorio",
+                    Toast.LENGTH_SHORT).show()
+                //val user = FirebaseAuth.currentUser
+                //updateUI(user)
+            } else {
+                // If sign in fails, display a message to the user.
+                Log.w("Sing in", "signInWithEmail:failure", task.exception)
+                Toast.makeText(baseContext, "Fallo al iniciar sesion: ${task.exception?.message}",
+                    Toast.LENGTH_SHORT).show()
+                //updateUI(null)
+            }
+
+            // ...
+        }
+        }
+
+    }
 
 
-class SignInActivity : AppCompatActivity() {
+}
+
+/*class SignInActivity : AppCompatActivity() {
     val RC_SIGN_IN: Int = 1
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var mGoogleSignInOptions: GoogleSignInOptions
@@ -33,7 +69,7 @@ class SignInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
+        setContentView(R.layout.activity_log_in)
         configureGoogleSignIn()
         setupUI()
         firebaseAuth = FirebaseAuth.getInstance()
@@ -103,9 +139,4 @@ class SignInActivity : AppCompatActivity() {
             }
         }
     }
-
-
-
-
-
-}
+}*/
