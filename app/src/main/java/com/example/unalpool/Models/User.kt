@@ -1,5 +1,6 @@
 package com.example.unalpool.Models
 
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -8,7 +9,7 @@ import com.google.firebase.database.ValueEventListener
 class User( val uid:String, val nombre:String, val correo:String, val imagenUrl:String , val telefono: String , val esVendedor:Boolean = false, val sesionVendedor:Boolean = false, val licenciaConduccionURL:String = "") {
     constructor():this("null","null","null","null","null")
 
-    companion object {
+    /*companion object {
         @JvmStatic
         fun traerBaseDeDatos(uid: String, mDataBase: DatabaseReference): User {
             var user: User
@@ -25,5 +26,5 @@ class User( val uid:String, val nombre:String, val correo:String, val imagenUrl:
             mDataBase.addValueEventListener(postListener)
             return user
         }
-    }
+    }*/
 }
