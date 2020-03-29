@@ -106,4 +106,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/selectphoto_imageview_register"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:civ_border_width="4dp"
+        app:civ_border_color="#FF000000"
+        app:layout_constraintBottom_toBottomOf="@+id/button_photo"
+        app:layout_constraintEnd_toEndOf="@+id/button_photo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/button_photo"
+        app:layout_constraintTop_toTopOf="@+id/button_photo"></de.hdodenhof.circleimageview.CircleImageView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

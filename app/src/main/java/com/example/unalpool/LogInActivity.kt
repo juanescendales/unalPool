@@ -1,26 +1,15 @@
 package com.example.unalpool
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.firebase.ui.auth.IdpResponse
-import com.firebase.ui.auth.ErrorCodes
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_log_in.*
-import kotlinx.android.synthetic.main.activity_register.*
 
 class LogInActivity  : AppCompatActivity(){
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
@@ -36,8 +25,8 @@ class LogInActivity  : AppCompatActivity(){
                 Log.d("Sing in", "signInWithEmail:success")
                 Toast.makeText(baseContext, "Ingreso satisfactorio",
                     Toast.LENGTH_SHORT).show()
-                //val user = FirebaseAuth.currentUser
-                //updateUI(user)
+                val intent = Intent(this,TripList::class.java)
+                startActivity(intent)
             } else {
                 // If sign in fails, display a message to the user.
                 Log.w("Sing in", "signInWithEmail:failure", task.exception)
