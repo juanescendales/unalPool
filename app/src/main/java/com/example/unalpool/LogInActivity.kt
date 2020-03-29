@@ -26,113 +26,25 @@ class LogInActivity  : AppCompatActivity(){
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
-                // Sign in success, update UI with the signed-in user's information
+
                 Log.d("Sing in", "signInWithEmail:success")
                 Toast.makeText(baseContext, "Ingreso satisfactorio",
                     Toast.LENGTH_SHORT).show()
                 val intent = Intent(this,TripList::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             } else {
-                // If sign in fails, display a message to the user.
+
                 Log.w("Sing in", "signInWithEmail:failure", task.exception)
                 Toast.makeText(baseContext, "Fallo al iniciar sesion: ${task.exception?.message}",
                     Toast.LENGTH_SHORT).show()
-                //updateUI(null)
+
             }
 
-            // ...
         }
         }
 
     }
-
-
 
 
 }
-
-/*class SignInActivity : AppCompatActivity() {
-    val RC_SIGN_IN: Int = 1
-    lateinit var mGoogleSignInClient: GoogleSignInClient
-    lateinit var mGoogleSignInOptions: GoogleSignInOptions
-    private lateinit var firebaseAuth: FirebaseAuth
-
-    companion object {
-        fun getLaunchIntent(from: Context) = Intent(from, SignInActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_log_in)
-        configureGoogleSignIn()
-        setupUI()
-        firebaseAuth = FirebaseAuth.getInstance()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val user = FirebaseAuth.getInstance().currentUser
-        if (user != null) {
-            startActivity(MainActivity.getLaunchIntent(this))
-            finish()
-        }
-    }
-
-    private fun configureGoogleSignIn() {
-        mGoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(this, mGoogleSignInOptions)
-    }
-
-
-    private fun setupUI() {
-        sign_in_button.setOnClickListener {
-            signIn()
-        }
-    }
-
-    private fun signIn() {
-        val signInIntent: Intent = mGoogleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        val response = IdpResponse.fromResultIntent(data)
-        if (requestCode == RC_SIGN_IN) {
-            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account = task.getResult(ApiException::class.java)
-                if (account != null) {
-                    firebaseAuthWithGoogle(account)
-                }
-            } catch (e: ApiException) {
-                Toast.makeText(this, "Google sign in failed:(", Toast.LENGTH_LONG).show()
-            }
-        }/*else if (resultCode == Activity.RESULT_CANCELED) {
-            if (response == null) return
-
-            when (response.error?.errorCode) {
-                ErrorCodes.NO_NETWORK ->
-                    longSnackbar(constraint_layout, "No network")
-                ErrorCodes.UNKNOWN_ERROR ->
-                    longSnackbar(constraint_layout, "Unknown error")
-            }
-        }*/
-    }
-
-    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
-            if (it.isSuccessful) {
-                startActivity(MainActivity.getLaunchIntent(this))
-            } else {
-                Toast.makeText(this, "Google sign in failed:(", Toast.LENGTH_LONG).show()
-            }
-        }
-    }
-}*/

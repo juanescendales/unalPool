@@ -125,8 +125,8 @@ class RegisterActivity : AppCompatActivity () {
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity","Nuevo usuario guardado en la base de datos")
-
                 val intent = Intent(this,TripList::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }.addOnFailureListener {
                 Log.d("RegisterActivity","Error al guardar la base de datos: ${it.message}")
