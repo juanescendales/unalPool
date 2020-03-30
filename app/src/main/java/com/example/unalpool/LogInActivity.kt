@@ -14,6 +14,11 @@ class LogInActivity  : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
 
+        cuenta_no_existe_textView_log_in.setOnClickListener {
+            val intent = Intent(this,RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
         login_button.setOnClickListener {
             val email = email_editText_login.text.toString()
             val password = password_editText_login.text.toString()

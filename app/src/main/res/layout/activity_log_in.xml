@@ -2,22 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cuenta_"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     tools:context=".LogInActivity">
 
+
     <ImageView
         android:id="@+id/imageView_login"
         android:layout_width="0dp"
         android:layout_height="198dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="40dp"
         android:contentDescription="@string/descripcion_logo"
         android:src="@drawable/ic_unal_pool_main_logo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <EditText
         android:id="@+id/email_editText_login"
@@ -29,10 +31,10 @@
         android:background="@drawable/rounded_edittext_register_login"
         android:ems="10"
         android:hint="Correo"
-        android:textColor="@android:color/primary_text_light"
         android:inputType="textEmailAddress"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
+        android:textColor="@android:color/primary_text_light"
         android:textColorHint="@color/common_google_signin_btn_text_light_focused"
         app:layout_constraintEnd_toEndOf="@+id/imageView_login"
         app:layout_constraintStart_toStartOf="@+id/imageView_login"
@@ -46,9 +48,9 @@
         android:background="@drawable/rounded_edittext_register_login"
         android:ems="10"
         android:hint="Contraseña"
-        android:textColor="@android:color/primary_text_light"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
+        android:textColor="@android:color/primary_text_light"
         android:textColorHint="@color/common_google_signin_btn_text_light_focused"
         app:layout_constraintEnd_toEndOf="@+id/email_editText_login"
         app:layout_constraintStart_toStartOf="@+id/email_editText_login"
@@ -68,5 +70,24 @@
         app:layout_constraintEnd_toEndOf="@+id/password_editText_login"
         app:layout_constraintStart_toStartOf="@+id/password_editText_login"
         app:layout_constraintTop_toBottomOf="@+id/password_editText_login" />
+
+    <TextView
+        android:id="@+id/cuenta_no_existe_textView_log_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="¿No estas registrado?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#070707"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/login_button"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/login_button"
+        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintVertical_bias="0.07" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
