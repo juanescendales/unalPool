@@ -19,40 +19,35 @@ import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.activity_trip_list.*
 
 class TripList : AppCompatActivity() {
-    val database = FirebaseDatabase.getInstance().getReference()
+
     var usuarioActual:User = User()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trip_list)
         verificarSesion()
-        val uid = FirebaseAuth.getInstance().uid
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                usuarioActual = dataSnapshot.getValue(User::class.java)!!
-                Log.d("TripList", "Objeto: ${usuarioActual.nombre}")
-            }
-            override fun onCancelled(dataSnapshot: DatabaseError) {
-                Log.d("TripList", "loadPost:onCancelled")
-                FirebaseAuth.getInstance().signOut()
-                verificarSesion()
-            }
-        }
-        database.child("usuarios").child(uid.toString()).addValueEventListener(postListener)
+        usuarioActual = intent.extras.get("usuarioActual") as User
+    }
 
+    override fun onResume() {
+        super.onResume()
         fetchTrips()
-
     }
     private fun fetchTrips(){
-        if(usuarioActual.esConductor){
+        Log.d("TripList", "usuarioActual.esConductor : ${usuarioActual.esConductor}")
+        if(usuarioActual.esConductor && usuarioActual.sesionConductor){
             val ref = FirebaseDatabase.getInstance().getReference("/viajes")
             ref.addListenerForSingleValueEvent(object:ValueEventListener{
                 override fun onDataChange(p0: DataSnapshot) {
+                    Log.d("TripList", "Entra al on data change")
                     val adapter = GroupAdapter<GroupieViewHolder>()
                     p0.children.forEach{
                         val trip = it.getValue(Trip::class.java)
                         Log.d("TripList", "iterando los viajes: ${trip.toString()}")
                         if(trip != null){
-                            adapter.add(MyTripItem(trip))
+                            if(trip.idConductor == usuarioActual.uid && (trip.estado == 0 || trip.estado == 1)){
+                                adapter.add(MyTripItem(trip))
+                            }
+
                         }
 
                     }
@@ -60,7 +55,7 @@ class TripList : AppCompatActivity() {
                 }
 
                 override fun onCancelled(p0: DatabaseError) {
-
+                    Log.d("TripList", "Error al consultar viajes: ${p0.message}")
                 }
             })
 

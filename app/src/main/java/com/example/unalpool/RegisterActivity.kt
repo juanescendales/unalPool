@@ -50,28 +50,38 @@ class RegisterActivity : AppCompatActivity () {
     }
 
     private fun crearRegistro(){
+        button_register.isClickable = false
         val email = email_editText_register.text.toString()
         val password = password_editText_register.text.toString()
         val phone = phone_editText_register.text.toString()
         Log.d("RegisterActivity","email: $email and password $password")
+        if(email == "" || password == "" || phone == "") {
+            Toast.makeText(baseContext, "Llena todos los campos",
+                Toast.LENGTH_SHORT).show()
+            return
+        }
         if(password.length < 6){
             Toast.makeText(baseContext, "Contraseña minimo de 6 caracteres",
                 Toast.LENGTH_SHORT).show()
+            button_register.isClickable = true
             return
         }
         if(password.length > 16){
             Toast.makeText(baseContext, "Contraseña maximo de 20 caracteres",
                 Toast.LENGTH_SHORT).show()
+            button_register.isClickable = true
             return
         }
         if(!("@unal.edu.co" in email)){
             Toast.makeText(baseContext, "Solo son validos correos de la universidad",
                 Toast.LENGTH_SHORT).show()
+            button_register.isClickable = true
             return
         }
         if(phone.length != 10){
             Toast.makeText(baseContext, "El telefono celular es de 11 digitos",
                 Toast.LENGTH_SHORT).show()
+            button_register.isClickable = true
             return
         }
         val name = email.removeSuffix("@unal.edu.co")
@@ -90,6 +100,7 @@ class RegisterActivity : AppCompatActivity () {
                     Log.d("RegisterActivity", "createUserWithEmail:failure", it.exception)
                     Toast.makeText(baseContext, "Fallo en el proceso de registro: ${it.exception?.message}",
                         Toast.LENGTH_SHORT).show()
+                    button_register.isClickable = true
                 }
             }
     }
@@ -114,6 +125,7 @@ class RegisterActivity : AppCompatActivity () {
                 Log.d("RegisterActivity","Error al guardar foto: ${it.message}")
                 Toast.makeText(baseContext, "Error al guardar la imagen",
                     Toast.LENGTH_SHORT).show()
+                button_register.isClickable = true
             }
     }
     private fun guardarUsuarioBaseDeDatos(nombre:String,correo:String,imagenUrl:String,telefono:String){
@@ -124,12 +136,15 @@ class RegisterActivity : AppCompatActivity () {
             .addOnSuccessListener {
                 Log.d("RegisterActivity","Nuevo usuario guardado en la base de datos")
                 val intent = Intent(this,TripList::class.java)
+                intent.putExtra("usuarioActual",user)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                button_register.isClickable = true
                 startActivity(intent)
             }.addOnFailureListener {
                 Log.d("RegisterActivity","Error al guardar la base de datos: ${it.message}")
                 Toast.makeText(baseContext, "Error: Registrado satisfactoriamente sin sus datos personales",
                     Toast.LENGTH_SHORT).show()
+                button_register.isClickable = true
             }
     }
 }

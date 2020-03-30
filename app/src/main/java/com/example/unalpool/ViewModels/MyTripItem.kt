@@ -12,13 +12,18 @@ class MyTripItem(val trip:Trip) : Item<GroupieViewHolder>(){
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         viewHolder.itemView.name_driver_textView.text = trip.nombreConductor
         viewHolder.itemView.hora_textView_mytrip.text = trip.horaDeSalida
+        viewHolder.itemView.fecha_textView_mytrip.text = trip.fechaDeSalida
         viewHolder.itemView.origen_textView_mytrip.text = trip.campusSalida
         viewHolder.itemView.destino_textView_mytrip.text = trip.campusLlegada
-        Picasso.get().load(trip.urlFotoConductor).into(viewHolder.itemView.photo_driver_imageView_mytrips)
+        val url = trip.urlFotoConductor
+        if(url !=""){
+            Picasso.get().load(url).into(viewHolder.itemView.photo_driver_imageView_mytrips)
+        }
         /*if(trip.estado == 0){
-            viewHolder.itemView.estado_imageView_mytrip.setImageResource(@android:drawable/presence_away)
-
+            viewHolder.itemView.estado_imageView_mytrip.setBackgroundResource()
         }*/
+
+
     }
     override fun getLayout(): Int {
         return R.layout.trip_row_mytrip
