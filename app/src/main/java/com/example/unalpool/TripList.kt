@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.example.unalpool.Models.User
+import kotlinx.android.synthetic.main.activity_trip_list.*
 
 class TripList : AppCompatActivity() {
     val database = FirebaseDatabase.getInstance().getReference()
@@ -20,6 +21,8 @@ class TripList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trip_list)
         verificarSesion()
+
+        recyclerview_mytrips.adapter
         val uid = FirebaseAuth.getInstance().uid
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
