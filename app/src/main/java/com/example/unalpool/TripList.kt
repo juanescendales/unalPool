@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.example.unalpool.Models.Trip
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -38,17 +39,36 @@ class TripList : AppCompatActivity() {
         }
         database.child("usuarios").child(uid.toString()).addValueEventListener(postListener)
 
-        //Vistas de lista resumidas
-        val adapter = GroupAdapter<GroupieViewHolder>()
-
-        adapter.add(MyTripItem())
-        adapter.add(MyTripItem())
-        adapter.add(MyTripItem())
-        recyclerview_mytrips.adapter = adapter
-
+        fetchTrips()
 
     }
+    private fun fetchTrips(){
+        if(usuarioActual.esConductor){
+            val ref = FirebaseDatabase.getInstance().getReference("/viajes")
+            ref.addListenerForSingleValueEvent(object:ValueEventListener{
+                override fun onDataChange(p0: DataSnapshot) {
+                    val adapter = GroupAdapter<GroupieViewHolder>()
+                    p0.children.forEach{
+                        val trip = it.getValue(Trip::class.java)
+                        Log.d("TripList", "iterando los viajes: ${trip.toString()}")
+                        if(trip != null){
+                            adapter.add(MyTripItem(trip))
+                        }
 
+                    }
+                    recyclerview_mytrips.adapter = adapter
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+
+                }
+            })
+
+        }else{
+
+        }
+
+    }
     private fun verificarSesion(){
         val uid = FirebaseAuth.getInstance().uid
         if(uid == null){
@@ -69,6 +89,9 @@ class TripList : AppCompatActivity() {
             R.id.menu_nuevo_viaje ->{
                 if(usuarioActual.esConductor){
                     val intent = Intent(this, NewTripDriver::class.java)
+                    intent.putExtra("user.id",usuarioActual.uid)
+                    intent.putExtra("user.nombre",usuarioActual.nombre)
+                    intent.putExtra("user.imagenUrl",usuarioActual.imagenUrl)
                     startActivity(intent)
                 }else{
                     val intent = Intent(this, NewTripPassenger::class.java)

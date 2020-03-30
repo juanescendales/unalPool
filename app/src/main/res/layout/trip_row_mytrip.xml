@@ -4,23 +4,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/photo_driver_imageView_mytrips"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:civ_border_width="2dp"
         app:srcCompat="@drawable/ic_chat_black_24dp" />
 
     <TextView
-        android:id="@+id/name_driver_textView_my"
+        android:id="@+id/name_driver_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="10dp"
         android:text="nombreConductor"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/photo_driver_imageView_mytrips"
         app:layout_constraintTop_toTopOf="@+id/photo_driver_imageView_mytrips" />
 
@@ -29,21 +32,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
         android:text="origen"
         app:layout_constraintBottom_toBottomOf="@+id/photo_driver_imageView_mytrips"
         app:layout_constraintStart_toEndOf="@+id/photo_driver_imageView_mytrips"
-        app:layout_constraintTop_toBottomOf="@+id/name_driver_textView_my"
+        app:layout_constraintTop_toBottomOf="@+id/name_driver_textView"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/destubi_textView_mytrip"
+        android:id="@+id/destino_textView_mytrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginBottom="8dp"
         android:text="destino"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/origen_textView_mytrip"
-        app:layout_constraintTop_toBottomOf="@+id/name_driver_textView_my"
+        app:layout_constraintTop_toBottomOf="@+id/name_driver_textView"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
@@ -51,19 +56,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:text="hora"
+        android:textStyle="bold"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/name_driver_textView_my"
+        app:layout_constraintStart_toEndOf="@+id/name_driver_textView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/estado_imageView_mytrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:drawable/presence_away"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hora_textView_mytrip"
-        app:srcCompat="@android:drawable/presence_away" />
+        app:layout_constraintTop_toBottomOf="@+id/hora_textView_mytrip" />
 </androidx.constraintlayout.widget.ConstraintLayout>

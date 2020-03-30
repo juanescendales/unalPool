@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menu_nuevo_viaje"
+        android:title="Mis Solicitudes"
+        app:showAsAction="ifRoom"
+        ></item>
+
+    <item android:id="@+id/menu_nuevo_viaje"
         android:title="Nuevo Viaje"
         app:showAsAction="ifRoom"
         ></item>
