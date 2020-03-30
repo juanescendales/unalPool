@@ -12,6 +12,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.example.unalpool.Models.User
+import com.example.unalpool.ViewModels.MyTripItem
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.activity_trip_list.*
 
 class TripList : AppCompatActivity() {
@@ -21,8 +24,6 @@ class TripList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trip_list)
         verificarSesion()
-
-        recyclerview_mytrips.adapter
         val uid = FirebaseAuth.getInstance().uid
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -36,6 +37,16 @@ class TripList : AppCompatActivity() {
             }
         }
         database.child("usuarios").child(uid.toString()).addValueEventListener(postListener)
+
+        //Vistas de lista resumidas
+        val adapter = GroupAdapter<GroupieViewHolder>()
+
+        adapter.add(MyTripItem())
+        adapter.add(MyTripItem())
+        adapter.add(MyTripItem())
+        recyclerview_mytrips.adapter = adapter
+
+
     }
 
     private fun verificarSesion(){

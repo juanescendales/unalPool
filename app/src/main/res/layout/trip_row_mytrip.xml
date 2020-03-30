@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/photo_driver_imageView_mytrips"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_chat_black_24dp" />
+
+    <TextView
+        android:id="@+id/name_driver_textView_my"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="nombreConductor"
+        app:layout_constraintStart_toEndOf="@+id/photo_driver_imageView_mytrips"
+        app:layout_constraintTop_toTopOf="@+id/photo_driver_imageView_mytrips" />
+
+    <TextView
+        android:id="@+id/origen_textView_mytrip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="origen"
+        app:layout_constraintBottom_toBottomOf="@+id/photo_driver_imageView_mytrips"
+        app:layout_constraintStart_toEndOf="@+id/photo_driver_imageView_mytrips"
+        app:layout_constraintTop_toBottomOf="@+id/name_driver_textView_my"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/destubi_textView_mytrip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="destino"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/origen_textView_mytrip"
+        app:layout_constraintTop_toBottomOf="@+id/name_driver_textView_my"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/hora_textView_mytrip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="hora"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/name_driver_textView_my"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/estado_imageView_mytrip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hora_textView_mytrip"
+        app:srcCompat="@android:drawable/presence_away" />
+</androidx.constraintlayout.widget.ConstraintLayout>
