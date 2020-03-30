@@ -2,6 +2,7 @@ package com.example.unalpool
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -88,5 +89,12 @@ class NewTripPassenger : AppCompatActivity() {
                 Toast.LENGTH_SHORT).show()
             return
         }
+        val intent = Intent(this, SearchTripList::class.java)
+        intent.putExtra("campusLlegada",campusLlegada)
+        intent.putExtra("campusSalida",campusSalida)
+        intent.putExtra("tolerancia",tolerancia)
+        intent.putExtra("hora",hora)
+        intent.putExtra("fecha",fecha)
+        startActivity(intent)
     }
 }
