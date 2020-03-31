@@ -28,18 +28,19 @@ class TripList : AppCompatActivity() {
         setContentView(R.layout.activity_trip_list)
         verificarSesion()
         usuarioActual = User.usuarioActual
-        Log.d("TripList", "usuarioActual.esConductor : ${usuarioActual.nombre}")
+        Log.d("TripList", "usuarioActual.sesionConductor : ${usuarioActual.sesionConductor}")
     }
 
     override fun onResume() {
         super.onResume()
+        usuarioActual = User.usuarioActual
+        Log.d("TripList", "usuarioActual.sesionConductor ONRESUME : ${usuarioActual.sesionConductor}")
         fetchTrips()
     }
     private fun fetchTrips() {
-        Log.d("TripList", "usuarioActual.esConductor : ${usuarioActual.esConductor}")
         val intentPeticiones = Intent(this,MyPetitionsDriver::class.java)
         val intentVerMas = Intent(this,TripActivity::class.java)
-        if (usuarioActual.esConductor && usuarioActual.sesionConductor) {
+        if (usuarioActual.sesionConductor) {
             val ref = FirebaseDatabase.getInstance().getReference("/viajes")
             ref.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(p0: DataSnapshot) {
@@ -101,7 +102,7 @@ class TripList : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if(usuarioActual.esConductor){
+        if(usuarioActual.sesionConductor){
             menuInflater.inflate(R.menu.nav_menu_conductor,menu)
         }else{
             menuInflater.inflate(R.menu.nav_menu,menu)
@@ -109,7 +110,8 @@ class TripList : AppCompatActivity() {
 
         return super.onCreateOptionsMenu(menu)
 
-    }
+        }
+
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId){

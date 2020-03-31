@@ -1,11 +1,13 @@
 package com.example.unalpool
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -24,6 +26,13 @@ class RegisterActivity : AppCompatActivity () {
         setContentView(R.layout.activity_register)
         Log.d("RegisterActivity","Hola1")
         button_register.setOnClickListener {
+            val view = this.currentFocus
+            view?.let { v ->
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+                imm?.hideSoftInputFromWindow(v.windowToken, 0)
+            }
+            Toast.makeText(baseContext, "Espere un momento",
+                Toast.LENGTH_SHORT).show()
             crearRegistro()
         }
         cuenta_existe_textView_register.setOnClickListener {

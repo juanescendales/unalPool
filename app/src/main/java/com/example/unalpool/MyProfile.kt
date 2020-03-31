@@ -40,7 +40,7 @@ class MyProfile : AppCompatActivity() {
                 intent.type = "image/*"
                 quiero_ser_conductor_my_profile_button.isClickable = false
                 startActivityForResult(intent,0)
-                finish()
+
             }
         }else if(usuarioActual.esConductor && usuarioActual.sesionConductor){
             mensaje_myprofile_textView.visibility = View.INVISIBLE
@@ -52,21 +52,29 @@ class MyProfile : AppCompatActivity() {
                 val ref = FirebaseDatabase.getInstance().getReference("/usuarios").child("/${usuarioActual.uid}")
                 ref.updateChildren(usuarioActual.toMap())
                 quiero_ser_conductor_my_profile_button.isClickable = false
-                finish()
+
+                User.usuarioActual.sesionConductor = false
+                val intent = Intent(this,TripList::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
             }
 
 
         }else if(usuarioActual.esConductor && !usuarioActual.sesionConductor){
             mensaje_myprofile_textView.visibility = View.INVISIBLE
             es_conductor_myprofile_textView.text = "Si"
-            quiero_ser_conductor_my_profile_button.text = "MODO CONDUCTOR "
+            quiero_ser_conductor_my_profile_button.text = "MODO CONDUCTOR"
 
             quiero_ser_conductor_my_profile_button.setOnClickListener{
                 usuarioActual.sesionConductor =true
                 val ref = FirebaseDatabase.getInstance().getReference("/usuarios").child("/${usuarioActual.uid}")
                 ref.updateChildren(usuarioActual.toMap())
                 quiero_ser_conductor_my_profile_button.isClickable = false
-                finish()
+
+                User.usuarioActual.sesionConductor = true
+                val intent = Intent(this,TripList::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
             }
 
         }else{
@@ -93,6 +101,13 @@ class MyProfile : AppCompatActivity() {
                         usuarioActual.licenciaConduccionURL = downLoadReference
                         val ref = FirebaseDatabase.getInstance().getReference("/usuarios").child("/${usuarioActual.uid}")
                         ref.updateChildren(usuarioActual.toMap())
+
+                        User.usuarioActual.esConductor = true
+                        User.usuarioActual.sesionConductor =true
+                        User.usuarioActual.licenciaConduccionURL = downLoadReference
+                        val intent = Intent(this,TripList::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
                     }
                 }
                 .addOnFailureListener {

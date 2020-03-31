@@ -27,7 +27,6 @@ class TripActivity : AppCompatActivity() {
         setContentView(R.layout.activity_trip)
         usuarioActual = User.usuarioActual
         tripActual = intent.extras.get("trip") as Trip
-        Log.d("TripList", "usuarioActual.esConductor : ${usuarioActual.nombre}")
         val adapter = GroupAdapter<GroupieViewHolder>()
         val ref = FirebaseDatabase.getInstance().getReference("/peticiones")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
