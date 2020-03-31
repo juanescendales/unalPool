@@ -51,7 +51,7 @@ class SearchTripList : AppCompatActivity() {
                     val trip = it.getValue(Trip::class.java)
 
                     if(trip != null){
-                        if( trip.estado == 0 && (trip.campusLlegada == campusLlegada && trip.campusSalida == campusSalida && trip.fechaDeSalida == fecha && trip.numeroCupos > 0) ){
+                        if( trip.estado == 0 && (trip.campusLlegada == campusLlegada && trip.campusSalida == campusSalida && trip.fechaDeSalida == fecha && trip.numeroCupos > 0 && trip.idConductor != usuarioActual.uid) ){
                             Log.d("SearchTripList", "iterando los viajes aceptados: ${trip.id}")
                             val horaViaje  =formatoHora.parse(trip.horaDeSalida).time
                             val horaBusqueda = formatoHora.parse(hora).time

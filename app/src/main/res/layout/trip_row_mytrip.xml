@@ -101,6 +101,7 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded_button_register_login"
         android:text="Ver "
+        android:textColor="@color/cardview_light_background"
         app:layout_constraintBottom_toBottomOf="@+id/peticiones_button_mytrip"
         app:layout_constraintEnd_toStartOf="@+id/peticiones_button_mytrip"
         app:layout_constraintTop_toTopOf="@+id/peticiones_button_mytrip" />
