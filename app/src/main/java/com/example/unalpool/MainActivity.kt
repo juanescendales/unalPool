@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        //FirebaseAuth.getInstance().signOut()
         val uid = FirebaseAuth.getInstance().uid
         val intent = Intent(this,TripList::class.java)
         if(uid!= null){
