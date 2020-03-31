@@ -29,12 +29,12 @@ class TripActivity : AppCompatActivity() {
         tripActual = intent.extras.get("trip") as Trip
         Log.d("TripList", "usuarioActual.esConductor : ${usuarioActual.nombre}")
         val adapter = GroupAdapter<GroupieViewHolder>()
-        adapter.add(TripInfoItem(tripActual))
         val ref = FirebaseDatabase.getInstance().getReference("/peticiones")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 Log.d("TripList", "Entra al on data change")
                 val adapter = GroupAdapter<GroupieViewHolder>()
+                adapter.add(TripInfoItem(tripActual))
                 p0.children.forEach {
                     val petition = it.getValue(Petition::class.java)
                     if (petition != null) {
@@ -50,6 +50,6 @@ class TripActivity : AppCompatActivity() {
                 Log.d("TripList", "Error al consultar viajes: ${p0.message}")
             }
         })
-
+        recyclerview_trip_activity.adapter = adapter
     }
 }
