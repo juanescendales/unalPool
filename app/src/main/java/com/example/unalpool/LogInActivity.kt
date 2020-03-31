@@ -50,7 +50,7 @@ class LogInActivity  : AppCompatActivity(){
                             Log.d("Sing in", "signInWithEmail:success")
                             Toast.makeText(baseContext, "Ingreso satisfactorio",
                                 Toast.LENGTH_SHORT).show()
-                            intent.putExtra("usuarioActual",usuarioActual)
+                            User.usuarioActual = usuarioActual
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                             login_button.isClickable = false
                             startActivity(intent)

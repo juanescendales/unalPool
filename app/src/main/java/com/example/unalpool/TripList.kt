@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.example.unalpool.Models.Petition
 import com.example.unalpool.Models.Trip
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -13,6 +14,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.example.unalpool.Models.User
+import com.example.unalpool.ViewModels.MyPetitionSuccessItem
 import com.example.unalpool.ViewModels.MyTripItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -25,27 +27,30 @@ class TripList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trip_list)
         verificarSesion()
-        usuarioActual = intent.extras.get("usuarioActual") as User
+        usuarioActual = User.usuarioActual
+        Log.d("TripList", "usuarioActual.esConductor : ${usuarioActual.nombre}")
     }
 
     override fun onResume() {
         super.onResume()
         fetchTrips()
     }
-    private fun fetchTrips(){
+    private fun fetchTrips() {
         Log.d("TripList", "usuarioActual.esConductor : ${usuarioActual.esConductor}")
-        if(usuarioActual.esConductor && usuarioActual.sesionConductor){
+        val intentPeticiones = Intent(this,MyPetitionsDriver::class.java)
+        val intentVerMas = Intent(this,TripActivity::class.java)
+        if (usuarioActual.esConductor && usuarioActual.sesionConductor) {
             val ref = FirebaseDatabase.getInstance().getReference("/viajes")
-            ref.addListenerForSingleValueEvent(object:ValueEventListener{
+            ref.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(p0: DataSnapshot) {
                     Log.d("TripList", "Entra al on data change")
                     val adapter = GroupAdapter<GroupieViewHolder>()
-                    p0.children.forEach{
+                    p0.children.forEach {
                         val trip = it.getValue(Trip::class.java)
                         Log.d("TripList", "iterando los viajes: ${trip.toString()}")
-                        if(trip != null){
-                            if(trip.idConductor == usuarioActual.uid && (trip.estado == 0 || trip.estado == 1)){
-                                adapter.add(MyTripItem(trip))
+                        if (trip != null) {
+                            if (trip.idConductor == usuarioActual.uid && (trip.estado == 0 || trip.estado == 1)) {
+                                adapter.add(MyTripItem(trip,intentPeticiones,intentVerMas,baseContext,applicationContext))
                             }
 
                         }
@@ -59,10 +64,32 @@ class TripList : AppCompatActivity() {
                 }
             })
 
-        }else{
+        } else {
+            val ref = FirebaseDatabase.getInstance().getReference("/peticiones")
+            ref.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(p0: DataSnapshot) {
+                    Log.d("TripList", "Entra al on data change")
+                    val adapter = GroupAdapter<GroupieViewHolder>()
+                    p0.children.forEach {
+                        val petition = it.getValue(Petition::class.java)
+                        Log.d("TripList", "iterando las peticiones: ${petition.toString()}")
+                        if (petition != null) {
+                            if (petition.idPasajero == usuarioActual.uid && petition.estado == 1) {
+                                adapter.add(MyPetitionSuccessItem(petition))
+                            }
+
+                        }
+
+                    }
+                    recyclerview_mytrips.adapter = adapter
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+                    Log.d("TripList", "Error al consultar viajes: ${p0.message}")
+                }
+            })
 
         }
-
     }
     private fun verificarSesion(){
         val uid = FirebaseAuth.getInstance().uid
@@ -74,19 +101,25 @@ class TripList : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.nav_menu,menu)
+        if(usuarioActual.esConductor){
+            menuInflater.inflate(R.menu.nav_menu_conductor,menu)
+        }else{
+            menuInflater.inflate(R.menu.nav_menu,menu)
+        }
+
         return super.onCreateOptionsMenu(menu)
 
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId){
+            R.id.menu_mis_solicitudes ->{
+                val intent = Intent(this, MyPetitions::class.java)
+                startActivity(intent)
+            }
             R.id.menu_nuevo_viaje ->{
                 if(usuarioActual.esConductor){
                     val intent = Intent(this, NewTripDriver::class.java)
-                    intent.putExtra("user.id",usuarioActual.uid)
-                    intent.putExtra("user.nombre",usuarioActual.nombre)
-                    intent.putExtra("user.imagenUrl",usuarioActual.imagenUrl)
                     startActivity(intent)
                 }else{
                     val intent = Intent(this, NewTripPassenger::class.java)

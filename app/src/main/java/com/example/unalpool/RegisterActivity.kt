@@ -136,7 +136,7 @@ class RegisterActivity : AppCompatActivity () {
             .addOnSuccessListener {
                 Log.d("RegisterActivity","Nuevo usuario guardado en la base de datos")
                 val intent = Intent(this,TripList::class.java)
-                intent.putExtra("usuarioActual",user)
+                User.usuarioActual = user
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 button_register.isClickable = true
                 startActivity(intent)

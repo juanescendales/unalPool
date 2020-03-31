@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-
+        main_button_register.isClickable = false
+        main_button_login.isClickable=false
         main_button_register.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
@@ -52,10 +53,9 @@ class MainActivity : AppCompatActivity() {
                     Log.d("Sing in", "signInWithEmail:success")
                     Toast.makeText(baseContext, "Ingreso satisfactorio",
                         Toast.LENGTH_SHORT).show()
-                    intent.putExtra("usuarioActual",usuarioActual)
+                    User.usuarioActual = usuarioActual
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
-
                 }
                 override fun onCancelled(dataSnapshot: DatabaseError) {
                     Log.d("TripList", "loadPost:onCancelled")
@@ -63,6 +63,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             database.child("usuarios").child(uid.toString()).addListenerForSingleValueEvent(postListener)
+        }else{
+            main_button_register.isClickable = true
+            main_button_login.isClickable=true
         }
     }
 

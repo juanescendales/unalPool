@@ -92,12 +92,10 @@
         android:background="@drawable/rounded_button_register_login"
         android:text="CREAR"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cupos_disponibles_editNumber_newTrip_driver"
-        app:layout_constraintVertical_bias="0.313" />
+        app:layout_constraintTop_toBottomOf="@+id/button_date_createtrip" />
 
     <Button
         android:id="@+id/button_hour_createtrip"

@@ -20,12 +20,13 @@ class NewTripDriver: AppCompatActivity() {
     private var fecha:String = ""
     private val formatoFecha = SimpleDateFormat("dd MMM, YYYY")
     private val formatoHora = SimpleDateFormat("hh:mm a")
+    var usuarioActual:User = User()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_trip_driver)
         supportActionBar?.title = "Nuevo Viaje"
-
+        usuarioActual = intent.extras.get("usuarioActual") as User
         button_date_createtrip.setOnClickListener {
             val now = Calendar.getInstance()
             val datePicker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
@@ -91,7 +92,7 @@ class NewTripDriver: AppCompatActivity() {
         }
 
         val ref = FirebaseDatabase.getInstance().getReference("/viajes").push()
-        val trip =  Trip(ref.key.toString(),campusSalida,campusLlegada,fecha,hora,cuposDisponibles,getIntent().extras.getString("user.id"),getIntent().extras.getString("user.nombre"),getIntent().extras.getString("user.imagenUrl"))
+        val trip =  Trip(ref.key.toString(),campusSalida,campusLlegada,fecha,hora,cuposDisponibles,usuarioActual.uid,usuarioActual.nombre,usuarioActual.imagenUrl)
         ref.setValue(trip)
             .addOnSuccessListener {
                 Log.d("NewTripDriver","Nuevo viaje creado")
