@@ -3,7 +3,7 @@ package com.example.unalpool.Models
 import java.io.Serializable
 
 
-class Trip (val id:String, val campusSalida:String, val campusLlegada:String, val fechaDeSalida:String, val horaDeSalida:String, val numeroCupos:Int, val idConductor:String, val nombreConductor:String, val urlFotoConductor:String, var estado:Int = 0):Serializable {
+class Trip (val id:String, val campusSalida:String, val campusLlegada:String, val fechaDeSalida:String, val horaDeSalida:String, var numeroCupos:Int, val idConductor:String, val nombreConductor:String, val urlFotoConductor:String, var estado:Int = 0):Serializable {
     constructor() : this("null", "null", "null", "null","null",0,"null","null","null")
     fun toMap(): Map<String, Any?> {
         return mapOf(

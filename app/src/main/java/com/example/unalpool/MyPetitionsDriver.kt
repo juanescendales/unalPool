@@ -34,7 +34,7 @@ class MyPetitionsDriver : AppCompatActivity() {
                 p0.children.forEach() {
                     val petition = it.getValue(Petition::class.java)
                     if(petition != null && petition.estado == 0 && petition.idViaje == trip.id){
-                        adapter.add(MyPetitionDriverItem(petition))
+                        adapter.add(MyPetitionDriverItem(petition,trip))
                     }
                 }
                 recyclerview_petitionsdriver.adapter = adapter

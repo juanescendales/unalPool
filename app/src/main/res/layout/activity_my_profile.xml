@@ -6,4 +6,95 @@
     android:layout_height="match_parent"
     tools:context=".MyProfile">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/photo_driver_myprofile_imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="36dp"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_chat_black_24dp" />
+
+    <TextView
+        android:id="@+id/nombre_myprofile_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="nombre"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photo_driver_myprofile_imageView" />
+
+    <TextView
+        android:id="@+id/telefono_myprofile_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Telofono"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombre_myprofile_textView" />
+
+    <TextView
+        android:id="@+id/es_conductor_myprofile_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:text="valorConductor"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_conductor"
+        app:layout_constraintStart_toEndOf="@+id/textView_conductor"
+        app:layout_constraintTop_toTopOf="@+id/textView_conductor" />
+
+    <TextView
+        android:id="@+id/textView_conductor"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:text="Conductor:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/telefono_myprofile_textView" />
+
+    <TextView
+        android:id="@+id/correo_myprofile_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Correo"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nombre_myprofile_textView"
+        app:layout_constraintTop_toBottomOf="@+id/photo_driver_myprofile_imageView" />
+
+    <Button
+        android:id="@+id/quiero_ser_conductor_my_profile_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_button_register_login"
+        android:text="Modo CONDUCTOR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/es_conductor_myprofile_textView" />
+
+    <TextView
+        android:id="@+id/mensaje_myprofile_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Para ser conductor tienes que subir \n tu licencia de conduccion *"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quiero_ser_conductor_my_profile_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
