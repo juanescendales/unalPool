@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.unalpool.Models.Petition
 import com.example.unalpool.Models.Trip
 import com.google.firebase.auth.FirebaseAuth
@@ -38,6 +39,7 @@ class TripList : AppCompatActivity() {
         fetchTrips()
     }
     private fun fetchTrips() {
+        recyclerview_mytrips.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
         val intentPeticiones = Intent(this,MyPetitionsDriver::class.java)
         val intentVerMas = Intent(this,TripActivity::class.java)
         if (usuarioActual.sesionConductor) {
@@ -58,6 +60,7 @@ class TripList : AppCompatActivity() {
 
                     }
                     recyclerview_mytrips.adapter = adapter
+
                 }
 
                 override fun onCancelled(p0: DatabaseError) {
@@ -120,7 +123,7 @@ class TripList : AppCompatActivity() {
                 startActivity(intent)
             }
             R.id.menu_nuevo_viaje ->{
-                if(usuarioActual.esConductor){
+                if(usuarioActual.sesionConductor){
                     val intent = Intent(this, NewTripDriver::class.java)
                     startActivity(intent)
                 }else{

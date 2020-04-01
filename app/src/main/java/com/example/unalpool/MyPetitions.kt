@@ -3,6 +3,7 @@ package com.example.unalpool
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.unalpool.Models.Petition
 import com.example.unalpool.Models.User
 import com.example.unalpool.ViewModels.MyPetitionItem
@@ -25,6 +26,7 @@ class MyPetitions : AppCompatActivity() {
     }
 
     private fun fetchPetitions(){
+        recyclerview_mypetitions.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
         val ref = FirebaseDatabase.getInstance().getReference("/peticiones")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {

@@ -26,6 +26,7 @@ class TripActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trip)
         usuarioActual = User.usuarioActual
+
         tripActual = intent.extras.get("trip") as Trip
         val adapter = GroupAdapter<GroupieViewHolder>()
         val ref = FirebaseDatabase.getInstance().getReference("/peticiones")

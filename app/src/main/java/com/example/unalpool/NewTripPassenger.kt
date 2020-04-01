@@ -99,6 +99,24 @@ class NewTripPassenger : AppCompatActivity() {
                 Toast.LENGTH_SHORT).show()
             return
         }
+        val hoy = formatoFecha.parse(formatoFecha.format(Calendar.getInstance())).time
+        val fechaSeleccionada = formatoFecha.parse(fecha).time
+
+        if(hoy > fechaSeleccionada){
+            Toast.makeText(baseContext, "Selecciona un dia valido",
+                Toast.LENGTH_SHORT).show()
+            return
+        }else if(hoy == fechaSeleccionada ){
+            val horaActual = formatoHora.parse(formatoHora.format(Calendar.getInstance())).time
+            val horaSeleccionada = formatoHora.parse(hora).time
+            if(horaActual > horaSeleccionada){
+                Toast.makeText(baseContext, "Selecciona una hora valida",
+                    Toast.LENGTH_SHORT).show()
+                return
+            }
+
+        }
+
         val intent = Intent(this, SearchTripList::class.java)
         intent.putExtra("campusLlegada",campusLlegada)
         intent.putExtra("campusSalida",campusSalida)

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.unalpool.Models.Trip
 import com.example.unalpool.Models.User
 import com.example.unalpool.ViewModels.TripSearchItem
@@ -38,7 +39,7 @@ class SearchTripList : AppCompatActivity() {
         val arrayIndicesPeticiones:ArrayList<String> = intent.extras.get("arrayIndicesPeticiones") as ArrayList<String>
         val fecha:String = intent.extras.get("fecha").toString()
 
-
+        recyclerview_searchTrips.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
         val intent = Intent(this,NewTripPassenger::class.java)
         intent.putExtra("usuarioActual",usuarioActual)
         val ref = FirebaseDatabase.getInstance().getReference("/viajes")
