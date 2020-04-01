@@ -116,7 +116,9 @@ class RegisterActivity : AppCompatActivity () {
     private fun guardarUsuarioEnFirebase(nombre: String,correo: String, telefono: String){
         Log.d("RegisterActivity", "valor de la URI: $selectedPhotoUri")
         if(selectedPhotoUri == null){
-            guardarUsuarioBaseDeDatos(nombre,correo,"",telefono)
+            Toast.makeText(baseContext, "Sube una foto de perfil porfavor",
+                Toast.LENGTH_SHORT).show()
+            button_register.isClickable = true
             return
         }
         val filename = UUID.randomUUID().toString()
