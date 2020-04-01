@@ -33,28 +33,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="24dp"
         android:text="origen"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/destino_textView"
         app:layout_constraintStart_toEndOf="@+id/photo_driver_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/name_driver_textView"
-        app:layout_constraintVertical_bias="0.761" />
+        app:layout_constraintTop_toBottomOf="@+id/name_driver_textView" />
 
     <TextView
         android:id="@+id/destino_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:text="destino"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ver_button_mytrip"
         app:layout_constraintStart_toEndOf="@+id/origen_textView"
-        app:layout_constraintTop_toBottomOf="@+id/name_driver_textView"
-        app:layout_constraintVertical_bias="0.761" />
+        app:layout_constraintTop_toBottomOf="@+id/name_driver_textView" />
 
     <TextView
         android:id="@+id/hora_textView"
@@ -87,29 +79,30 @@
         android:id="@+id/peticiones_button_mytrip"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_button_viajar_searchtrip"
         android:text="peticiones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fecha_textView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toEndOf="@+id/ver_button_mytrip"
+        app:layout_constraintTop_toTopOf="@+id/ver_button_mytrip" />
 
     <Button
         android:id="@+id/ver_button_mytrip"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_button_register_login"
         android:text="Ver "
         android:textColor="@color/cardview_light_background"
-        app:layout_constraintBottom_toBottomOf="@+id/peticiones_button_mytrip"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/peticiones_button_mytrip"
-        app:layout_constraintStart_toEndOf="@+id/destino_textView"
-        app:layout_constraintTop_toTopOf="@+id/peticiones_button_mytrip"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photo_driver_imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
