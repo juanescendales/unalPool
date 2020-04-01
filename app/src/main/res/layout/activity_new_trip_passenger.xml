@@ -102,7 +102,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:text="Busca un viaje"
-        android:textColor="#090707"
+        android:textColor="@color/colorPalete2"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

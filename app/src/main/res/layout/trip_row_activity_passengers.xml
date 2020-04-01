@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="NombreUsuario"
+        android:textColor="@color/colorPalete2"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/photo_passenger_tripactivity_imageView"

@@ -12,6 +12,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="FechaSalida"
+        android:textColor="@color/colorPalete2"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/hora_textView_mypetition"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +39,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="Hora"
+        android:textColor="@color/colorPalete2"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
