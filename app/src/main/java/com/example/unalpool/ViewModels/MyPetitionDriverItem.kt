@@ -27,7 +27,7 @@ class MyPetitionDriverItem(val petition: Petition, val trip: Trip) : Item<Groupi
                     trip.estado = 1
                 }
                 val ref = FirebaseDatabase.getInstance().getReference("/peticiones").child("/${petition.id}")
-                ref.updateChildren(trip.toMap())
+                ref.updateChildren(petition.toMap())
             }
         }
         viewHolder.itemView.button_rechazar_driver.setOnClickListener {

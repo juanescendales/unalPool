@@ -88,7 +88,7 @@ class RegisterActivity : AppCompatActivity () {
             return
         }
         if(phone.length != 10){
-            Toast.makeText(baseContext, "El telefono celular es de 11 digitos",
+            Toast.makeText(baseContext, "El telefono celular es de 10 digitos",
                 Toast.LENGTH_SHORT).show()
             button_register.isClickable = true
             return
