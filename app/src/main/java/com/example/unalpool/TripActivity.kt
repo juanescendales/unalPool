@@ -1,5 +1,6 @@
 package com.example.unalpool
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -26,8 +27,9 @@ class TripActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trip)
         usuarioActual = User.usuarioActual
-
         tripActual = intent.extras.get("trip") as Trip
+
+        val intent = Intent(this,TripList::class.java)
         val adapter = GroupAdapter<GroupieViewHolder>()
         val ref = FirebaseDatabase.getInstance().getReference("/peticiones")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -43,7 +45,7 @@ class TripActivity : AppCompatActivity() {
                         }
                     }
                 }
-                adapter.add(TripButtonItem(tripActual))
+                adapter.add(TripButtonItem(tripActual,intent,applicationContext))
                 recyclerview_trip_activity.adapter = adapter
             }
             override fun onCancelled(p0: DatabaseError) {

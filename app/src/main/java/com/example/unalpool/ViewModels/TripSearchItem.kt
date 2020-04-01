@@ -1,6 +1,5 @@
 package com.example.unalpool.ViewModels
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK

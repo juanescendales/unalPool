@@ -20,8 +20,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class NewTripPassenger : AppCompatActivity() {
-    private var hora:String = ""
-    private var fecha:String = ""
+    private var hora: Date = Calendar.getInstance().time
+    private var fecha: Date = Calendar.getInstance().time
     private val formatoFecha = SimpleDateFormat("dd MMM, YYYY")
     private val formatoHora = SimpleDateFormat("hh:mm a")
     var usuarioActual: User = User()
@@ -39,8 +39,8 @@ class NewTripPassenger : AppCompatActivity() {
                 selectedDate.set(Calendar.YEAR,year)
                 selectedDate.set(Calendar.MONTH,month)
                 selectedDate.set(Calendar.DAY_OF_MONTH,dayOfMonth)
-                fecha = formatoFecha.format(selectedDate.time)
-                button_date_searchtrip.text = fecha
+                fecha = selectedDate.time
+                button_date_searchtrip.text = formatoFecha.format(selectedDate.time)
             },
                 now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DAY_OF_MONTH))
             datePicker.show()
@@ -52,8 +52,8 @@ class NewTripPassenger : AppCompatActivity() {
                 val selectedTime = Calendar.getInstance()
                 selectedTime.set(Calendar.HOUR_OF_DAY,hourOfDay)
                 selectedTime.set(Calendar.MINUTE,minute)
-                hora =  formatoHora.format(selectedTime.time)
-                button_hour_searchtrip.text = hora
+                hora =  selectedTime.time
+                button_hour_searchtrip.text = formatoHora.format(selectedTime.time)
             },
                 now.get(Calendar.HOUR_OF_DAY),now.get(Calendar.MINUTE),false)
             timePicker.show()
@@ -67,8 +67,10 @@ class NewTripPassenger : AppCompatActivity() {
         val campusLlegada = campus_llegada_editText_newTrip_passenger.text.toString().toLowerCase()
         val campusSalida = campus_salida_editText_newTrip_passenger.text.toString().toLowerCase()
         val toleranciaString = tolerancia_editText_newTrip_passenger.text.toString()
+        val fechaString:String = formatoFecha.format(fecha)
+        val horaString:String = formatoHora.format(hora)
         Log.d("NewTripPassenger","campus llegada $campusLlegada and campus salida $campusSalida")
-        if(campusLlegada == "" || campusSalida == "" || toleranciaString == "" || hora == "" || fecha == "") {
+        if(campusLlegada == "" || campusSalida == "" || toleranciaString == "" || horaString == "" || fechaString == "") {
             Toast.makeText(baseContext, "Llena todos los campos",
                 Toast.LENGTH_SHORT).show()
             return
@@ -99,30 +101,28 @@ class NewTripPassenger : AppCompatActivity() {
                 Toast.LENGTH_SHORT).show()
             return
         }
-        val hoy = formatoFecha.parse(formatoFecha.format(Calendar.getInstance())).time
-        val fechaSeleccionada = formatoFecha.parse(fecha).time
+        //Validacion sentido de fecha
+        val hoy = Calendar.getInstance().time.time
+        val tiempoSeleccionado = fecha.time + (hora.time - hoy)
 
-        if(hoy > fechaSeleccionada){
-            Toast.makeText(baseContext, "Selecciona un dia valido",
-                Toast.LENGTH_SHORT).show()
+        Log.d("NewTripDriver","Valor hoy: $hoy")
+        Log.d("NewTripDriver","Valor fecha seleccionada: $fecha")
+
+        if (hoy > tiempoSeleccionado) {
+            Toast.makeText(
+                baseContext, "Selecciona una fecha valida",
+                Toast.LENGTH_SHORT
+            ).show()
             return
-        }else if(hoy == fechaSeleccionada ){
-            val horaActual = formatoHora.parse(formatoHora.format(Calendar.getInstance())).time
-            val horaSeleccionada = formatoHora.parse(hora).time
-            if(horaActual > horaSeleccionada){
-                Toast.makeText(baseContext, "Selecciona una hora valida",
-                    Toast.LENGTH_SHORT).show()
-                return
-            }
-
         }
+        //Validacion sentido de fecha
 
         val intent = Intent(this, SearchTripList::class.java)
         intent.putExtra("campusLlegada",campusLlegada)
         intent.putExtra("campusSalida",campusSalida)
         intent.putExtra("tolerancia",tolerancia)
-        intent.putExtra("hora",hora)
-        intent.putExtra("fecha",fecha)
+        intent.putExtra("hora",horaString)
+        intent.putExtra("fecha",fechaString)
 
         terminarBusquedaViaje(intent)
 

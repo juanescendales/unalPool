@@ -66,6 +66,8 @@ class SearchTripList : AppCompatActivity() {
                 }
 
                 recyclerview_searchTrips.adapter = adapter
+
+
             }
 
             override fun onCancelled(p0: DatabaseError) {

@@ -23,6 +23,9 @@ class MyPetitionDriverItem(val petition: Petition, val trip: Trip) : Item<Groupi
             ref.updateChildren(petition.toMap())
             if(trip.numeroCupos > 0){
                 trip.numeroCupos = trip.numeroCupos - 1
+                if(trip.numeroCupos == 0){
+                    trip.estado = 1
+                }
                 val ref = FirebaseDatabase.getInstance().getReference("/peticiones").child("/${petition.id}")
                 ref.updateChildren(trip.toMap())
             }

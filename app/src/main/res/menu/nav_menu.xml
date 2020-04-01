@@ -2,24 +2,37 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/menu_mis_solicitudes"
+    <item
+        android:id="@+id/menu_mis_solicitudes"
+        android:icon="@android:drawable/ic_menu_recent_history"
         android:title="Mis solicitudes"
-        app:showAsAction="ifRoom"
-        ></item>
+        app:showAsAction="ifRoom">
 
-    <item android:id="@+id/menu_nuevo_viaje"
+    </item>
+
+    <item
+        android:id="@+id/menu_nuevo_viaje"
+        android:icon="@android:drawable/ic_menu_search"
         android:title="Nuevo Viaje"
-        app:showAsAction="ifRoom"
-        ></item>
+        app:showAsAction="ifRoom">
 
-    <item android:id="@+id/menu_mi_perfil"
+    </item>
+
+    <item
+        android:id="@+id/menu_mi_perfil"
+        android:icon="@android:drawable/ic_menu_my_calendar"
         android:title="Mi Perfil"
-        app:showAsAction="ifRoom"
-        ></item>
+        app:showAsAction="ifRoom">
 
-    <item android:id="@+id/menu_sign_out"
+    </item>
+    <item
+        android:id="@+id/menu_sign_out"
+        android:icon="@android:drawable/ic_menu_set_as"
         android:title="Cerrar Sesion"
-        app:showAsAction="ifRoom"></item>
+        app:showAsAction="ifRoom">
+
+    </item>
+
 
 
 </menu>
